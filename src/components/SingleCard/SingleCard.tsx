@@ -45,8 +45,6 @@ interface ChildProps {
   getPage: (page: number) => void;
 }
 const SingleCard = ({ game, page, getPage }: ChildProps) => {
-  
-
   // getPage()
   return (
     <Link key={game.id} href={`./pages/page=${page}/${game.id}`}>

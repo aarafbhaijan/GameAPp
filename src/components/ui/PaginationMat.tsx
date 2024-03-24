@@ -44,12 +44,11 @@ export default function PaginationRounded({
           },
         }}
         className="text-white"
-        count={5000}
-        onChange={(e, pageUrl) => {
-          getCurrPage(pageUrl);
-          setPage(pageUrl);
-
-          window.scroll(0, 2);
+        count={500}
+        onChange={(e, page) => {
+          getCurrPage(page);
+          setPage(page);
+          window.scroll(0, 0);
         }}
         variant="outlined"
         shape="rounded"

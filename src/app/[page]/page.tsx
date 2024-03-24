@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 const page = () => {
   const url = usePathname();
   const pageUrl = parseInt(url.slice(1));
-  console.log(pageUrl);
+ 
   
 
   return (

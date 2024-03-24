@@ -12,8 +12,6 @@ import { Container } from "@mui/material";
 import fs from "node:fs/promises";
 import { usePathname, useRouter } from "next/navigation";
 
-// import { count } from "console";
-
 export interface Platfroms {
   platform: {
     id: number;
@@ -29,6 +27,7 @@ export interface Games {
   ratings: {
     id: number;
   };
+  short_screenshots: string;
   platforms: Platfroms[];
   released: string;
 }
@@ -56,7 +55,7 @@ export default function Home({ pageUrl }: ChildProps) {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   let id: number = 3498;
-  console.log(page);
+  // console.log(games);
 
   const fetchGames = async () => {
     // fs.writeFile('./page/page.tsx',page.toString())
@@ -77,7 +76,7 @@ export default function Home({ pageUrl }: ChildProps) {
     setCount(count);
     setLoading(false);
   };
-  // console.log(page);
+
   useEffect(() => {
     fetchGames();
   }, [pageUrl, page]);
@@ -87,7 +86,6 @@ export default function Home({ pageUrl }: ChildProps) {
   };
   const router = useRouter();
   const url = usePathname();
-  console.log(pageUrl);
 
   return (
     <main className="  bg-[black] ">
@@ -115,35 +113,16 @@ export default function Home({ pageUrl }: ChildProps) {
         {count > 1 && (
           <div className="flex justify-center">
             <ThemeProvider theme={theme}>
+              <h1 className="text-white">
+                {page} and {pageUrl}
+              </h1>
               <PaginationRounded
                 count={count}
-                page={pageUrl ? pageUrl : page}
+                page={page}
                 setPage={setPage}
                 pageUrl={pageUrl}
               />
             </ThemeProvider>
-            {/* <div className="join bg-black text-white">
-              <button
-                className="join-item btn bg-black text-white"
-                onClick={() => {
-                  page > 1 ? (setPage(page - 1), getCurrPage(page - 1)) : page;
-                }}
-              >
-                «
-              </button>
-              <button className="join-item btn bg-black text-white">
-                {page}
-              </button>
-              <button
-                className="join-item btn bg-black text-white"
-                onClick={() => {
-                  setPage(page + 1);
-                  getCurrPage(page + 1);
-                }}
-              >
-                »
-              </button>
-            </div> */}
           </div>
         )}
       </Container>
