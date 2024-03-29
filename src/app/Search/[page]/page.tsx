@@ -2,16 +2,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import SingleCard from "./../components/SingleCard/SingleCard";
+import SingleCard from "../../../components/SingleCard/SingleCard";
 import PaginationRounded from "@/components/ui/PaginationMat";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  ThemeProvider,
+  createMuiTheme,
+  createTheme,
+  makeStyles,
+} from "@mui/material/styles";
 import { red, purple, green } from "@mui/material/colors";
 
-import RootLayout from "./layout";
-import { Container } from "@mui/material";
+import RootLayout from "../../layout";
+import { colors, Container } from "@mui/material";
 import fs from "node:fs/promises";
 import { usePathname, useRouter } from "next/navigation";
 import YouTube from "@/components/ui/Pulseate";
+import FreeSolo from "@/components/ui/MatSearch";
+import GloballyCustomizedOptions from "@/components/ui/MatSearch2";
 
 export interface Platfroms {
   platform: {
@@ -53,23 +60,21 @@ const theme = createTheme({
 });
 export default function Home({ pageUrl }: ChildProps) {
   var [page, setPage] = useState(pageUrl ? pageUrl : 1);
+  const [search, setSearch] = useState("");
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   let id: number = 3498;
   // console.log(games);
+  console.log(search);
+  const fetchGames = async (search:string) => {
+   
 
-  const fetchGames = async () => {
     // fs.writeFile('./page/page.tsx',page.toString())
     const key = "bade7e318e0545a4a034f3b3d23f12bc";
     const res = await fetch(
-      // "https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&ordering=-rating&developers=2623",
-      // `https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&dates=2019-01-01,2019-12-31&developers=18`,
-      /* for date and order=added */ //`https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&page=${page}&dates=1996-10-10,2001-10-10&ordering=-added`,
-      /* for date and platforms */ // `https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&page=${page}&dates=2023-09-01,2024-09-30&platforms=18,1,7`,
-      /*to search for perticular game*/ // `https://api.rawg.io/api/games?search=play station &key=${key}`,
-      /*PLatfrom api*/ // `https://api.rawg.io/api/platforms/playstation4/games?key=${key}`,
-      /* normal */ `https://api.rawg.io/api/games?key=${key}&id=${id}&page=${page}&platforms=4`,
+      /*to search for perticular game*/ `https://api.rawg.io/api/games?search=${search} &key=${key}`,
+
       { next: { revalidate: 10 } }
     );
 
@@ -80,7 +85,7 @@ export default function Home({ pageUrl }: ChildProps) {
   };
 
   useEffect(() => {
-    fetchGames();
+    fetchGames(search);
   }, [pageUrl, page]);
 
   const getPage = (page: number) => {
@@ -92,6 +97,15 @@ export default function Home({ pageUrl }: ChildProps) {
   return (
     <main className="  bg-[black] ">
       <Container>
+        <div className="text-white w-full inline-block m-5">
+          <FreeSolo
+            search={search}
+            setSearch={setSearch}
+            fetchGames={fetchGames}
+          />
+
+          {/* <GloballyCustomizedOptions /> */}
+        </div>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth  justify-center md:p-5">
           {games && !loading ? (
             games.map((game: Games) => {
@@ -109,7 +123,7 @@ export default function Home({ pageUrl }: ChildProps) {
           )}
         </div>
 
-        {count > 1 && (
+        {count > 1 && search == "" && (
           <div className="flex justify-center">
             <ThemeProvider theme={theme}>
               <PaginationRounded

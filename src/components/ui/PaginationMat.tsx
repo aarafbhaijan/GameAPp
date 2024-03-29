@@ -20,9 +20,12 @@ export default function PaginationRounded({
   pageUrl,
 }: ChildProps) {
   const router = useRouter();
+  const path = usePathname();
+  console.log(path);
 
   const getCurrPage = (page: number) => {
-    router.push(`/${page}`);
+    if (path == "/") router.push(`/${page}`);
+    if (path == "/Search") router.push(`/Search/${page}`);
   };
 
   return (
