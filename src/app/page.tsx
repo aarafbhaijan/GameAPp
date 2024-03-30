@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import SingleCard from "./../components/SingleCard/SingleCard";
 import PaginationRounded from "@/components/ui/PaginationMat";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -52,7 +52,17 @@ const theme = createTheme({
     },
   },
 });
-export default function Home() {
+
+const HomeContainer = () => {
+  return (
+    <Suspense fallback={null}>
+      <Home />
+    </Suspense>
+  );
+};
+export default HomeContainer;
+
+function Home() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);

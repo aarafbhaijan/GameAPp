@@ -24,7 +24,7 @@ interface PlatName {
 }
 interface PlatsInfo {
   platform: PlatName;
-  requirements_en: Requirements;
+  requirements: Requirements;
 }
 interface ChildProps {
   plats: PlatsInfo[] | undefined;
@@ -106,10 +106,10 @@ const SystemRequire = ({ plats }: ChildProps) => {
               return (
                 <div>
                   {/* <h1>{plat.requirements_en.minimum!=null?plat.requirements_en.minimum:''}</h1> */}
-                  {plat.requirements_en?.minimum && (
+                  {plat.requirements?.minimum && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: plat.requirements_en.minimum,
+                        __html: plat.requirements.minimum,
                       }}
                     />
                   )}
@@ -121,10 +121,10 @@ const SystemRequire = ({ plats }: ChildProps) => {
             plats?.map((plat) => {
               return (
                 <div>
-                  {plat.requirements_en?.recommended && (
+                  {plat.requirements?.recommended && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: plat.requirements_en.recommended,
+                        __html: plat.requirements.recommended,
                       }}
                     />
                   )}

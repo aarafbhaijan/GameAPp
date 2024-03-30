@@ -43,7 +43,7 @@ interface Games {
 }
 interface ChildProps {
   game: Games;
-  }
+}
 const SingleCard = ({ game }: ChildProps) => {
   const el = useRef(null);
   const el2 = useRef(null);
@@ -81,7 +81,7 @@ const SingleCard = ({ game }: ChildProps) => {
   return (
     <>
       {game ? (
-        <Link key={game.id} href={`./pages/${game.id}`}>
+        <Link key={game.id} href={`/pages/${game.id}`}>
           <div
             className="card z-0 md:w-[16rem] w-40 glass text-[#f1eeee] cursor-pointer  hover:bg-[#232222] md:hover:scale-105 transition-[180ms]"
             key={game.ratings.id}
@@ -94,37 +94,38 @@ const SingleCard = ({ game }: ChildProps) => {
               <p className=" text-sm" ref={el2}></p>
               <div className="card-actions justify-end">
                 <ul className="flex flex-wrap gap-4">
-                  {game.platforms && game.platforms.map((platform) => {
-                    let message;
-                    switch (platform.platform.name) {
-                      case "PC":
-                        message = <FaWindows />;
-                        break;
-                      case "PlayStation 5":
-                        message = <SiPlaystation5 />;
-                        break;
-                      case "Xbox One" || "Xbox Series S/X":
-                        message = <FaXbox />;
-                        break;
-                      case "PlayStation 4":
-                        message = <SiPlaystation4 />;
-                        break;
-                      case "PlayStation 3":
-                        message = <SiPlaystation3 />;
-                        break;
-                      case "Nintendo Switch":
-                        message = <SiMacos />;
-                        break;
-                      case "macOS":
-                        message = <BsNintendoSwitch />;
-                        break;
-                    }
-                    return (
-                      <li className="text-3xl text-white">
-                        {message ? message : null}
-                      </li>
-                    );
-                  })}
+                  {game.platforms &&
+                    game.platforms.map((platform) => {
+                      let message;
+                      switch (platform.platform.name) {
+                        case "PC":
+                          message = <FaWindows />;
+                          break;
+                        case "PlayStation 5":
+                          message = <SiPlaystation5 />;
+                          break;
+                        case "Xbox One" || "Xbox Series S/X":
+                          message = <FaXbox />;
+                          break;
+                        case "PlayStation 4":
+                          message = <SiPlaystation4 />;
+                          break;
+                        case "PlayStation 3":
+                          message = <SiPlaystation3 />;
+                          break;
+                        case "Nintendo Switch":
+                          message = <SiMacos />;
+                          break;
+                        case "macOS":
+                          message = <BsNintendoSwitch />;
+                          break;
+                      }
+                      return (
+                        <li className="text-3xl text-white">
+                          {message ? message : null}
+                        </li>
+                      );
+                    })}
                 </ul>
 
                 <Rating name="read-only" value={game.rating_top} readOnly />

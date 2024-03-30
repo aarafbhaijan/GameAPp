@@ -31,7 +31,7 @@ const Logo = () => {
             className="w-14"
             alt="logo"
           />
-          <Link href={"./"} className="btn btn-ghost text-xl md:text-3xl">
+          <Link href={"/"} className="btn btn-ghost text-xl md:text-3xl">
             PixelPlayToon
           </Link>
         </div>
@@ -39,7 +39,7 @@ const Logo = () => {
         <div className="md:flex-none text-xl justify-center  ">
           <ul className="text-lg menu menu-horizontal px-1 hidden md:flex ">
             <li>
-              <Link href={"./Search"}>Search</Link>
+              <Link href={"/Search"}>Search</Link>
             </li>
             <li>
               <details>

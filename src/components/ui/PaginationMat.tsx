@@ -18,8 +18,7 @@ interface ChildProps {
 export default function PaginationRounded({
   count,
   page,
-  onPageChange
-
+  onPageChange,
 }: // setPage,
 // pageUrl,
 ChildProps) {
@@ -37,16 +36,15 @@ ChildProps) {
     <Stack spacing={2} className=" p-5 text-white w-[fit]">
       <Pagination
         sx={{
-          ".css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root": {
+          ".*-MuiButtonBase-root-MuiPaginationItem-root": {
             color: "white",
             border: "0.1px solid #6f6e6e",
           },
-          ".css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected":
-            {
-              backgroundColor: "#4d4747",
-              border: "1px solid #ffff",
-            },
-          ".css-1v2lvtn-MuiPaginationItem-root": {
+          ".*-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
+            backgroundColor: "#4d4747",
+            border: "1px solid #ffff",
+          },
+          ".*-MuiPaginationItem-root": {
             color: "white",
             fontWeight: "600",
           },
@@ -55,8 +53,7 @@ ChildProps) {
         count={500}
         page={page}
         onChange={(e, page) => {
-         
-          onPageChange(page)
+          onPageChange(page);
 
           // window.scroll(0, 0);
         }}
