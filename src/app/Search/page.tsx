@@ -58,8 +58,8 @@ const theme = createTheme({
     },
   },
 });
-export default function Home({ pageUrl }: ChildProps) {
-  var [page, setPage] = useState(pageUrl ? pageUrl : 1);
+export default function Home() {
+  var [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
@@ -88,7 +88,7 @@ export default function Home({ pageUrl }: ChildProps) {
 
   useEffect(() => {
     fetchGames();
-  }, [pageUrl, page]);
+  }, [ page, search]);
 
   const getPage = (page: number) => {
     // setPage(page);
@@ -113,8 +113,6 @@ export default function Home({ pageUrl }: ChildProps) {
             games.map((game: Games) => {
               return (
                 <SingleCard
-                  getPage={getPage}
-                  page={page}
                   game={game}
                   key={game.id}
                 />
@@ -124,19 +122,6 @@ export default function Home({ pageUrl }: ChildProps) {
             <YouTube />
           )}
         </div>
-
-        {count > 1 && search == "" && (
-          <div className="flex justify-center">
-            <ThemeProvider theme={theme}>
-              <PaginationRounded
-                count={count}
-                page={page}
-                setPage={setPage}
-                pageUrl={pageUrl}
-              />
-            </ThemeProvider>
-          </div>
-        )}
       </Container>
     </main>
   );

@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -9,24 +10,28 @@ import { getPageFiles } from "next/dist/server/get-page-files";
 interface ChildProps {
   count: number;
   page: number;
-  setPage: (page: number) => void;
-  pageUrl: number;
+  // setPage: (page: number) => void;
+  // pageUrl: number;
+  onPageChange: (page: number) => void;
 }
 
 export default function PaginationRounded({
   count,
   page,
-  setPage,
-  pageUrl,
-}: ChildProps) {
-  const router = useRouter();
-  const path = usePathname();
-  console.log(path);
+  onPageChange
 
-  const getCurrPage = (page: number) => {
-    if (path == "/") router.push(`/${page}`);
-    if (path == "/Search") router.push(`/Search/${page}`);
-  };
+}: // setPage,
+// pageUrl,
+ChildProps) {
+  // const router = useRouter();
+  // const path = usePathname();
+
+  console.log(`pagination ${page}`);
+
+  // const getCurrPage = (page: number) => {
+  //   if (path == "/") router.push(`/${page}`);
+  //   // if (path == "/Search") router.push(`/Search/${page}`);
+  // };
 
   return (
     <Stack spacing={2} className=" p-5 text-white w-[fit]">
@@ -48,10 +53,12 @@ export default function PaginationRounded({
         }}
         className="text-white"
         count={500}
+        page={page}
         onChange={(e, page) => {
-          getCurrPage(page);
-          setPage(page);
-          window.scroll(0, 0);
+         
+          onPageChange(page)
+
+          // window.scroll(0, 0);
         }}
         variant="outlined"
         shape="rounded"

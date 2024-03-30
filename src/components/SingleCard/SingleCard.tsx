@@ -43,10 +43,8 @@ interface Games {
 }
 interface ChildProps {
   game: Games;
-  page: number;
-  getPage: (page: number) => void;
-}
-const SingleCard = ({ game, page, getPage }: ChildProps) => {
+  }
+const SingleCard = ({ game }: ChildProps) => {
   const el = useRef(null);
   const el2 = useRef(null);
   const el3 = useRef(null);
@@ -83,7 +81,7 @@ const SingleCard = ({ game, page, getPage }: ChildProps) => {
   return (
     <>
       {game ? (
-        <Link key={game.id} href={`./pages/page=${page}/${game.id}`}>
+        <Link key={game.id} href={`./pages/${game.id}`}>
           <div
             className="card z-0 md:w-[16rem] w-40 glass text-[#f1eeee] cursor-pointer  hover:bg-[#232222] md:hover:scale-105 transition-[180ms]"
             key={game.ratings.id}

@@ -12,6 +12,7 @@ import { Container } from "@mui/material";
 import fs from "node:fs/promises";
 import { usePathname, useRouter } from "next/navigation";
 import YouTube from "@/components/ui/Pulseate";
+import { useSearchParams } from "next/navigation";
 
 export interface Platfroms {
   platform: {
@@ -51,24 +52,21 @@ const theme = createTheme({
     },
   },
 });
-export default function Home({ pageUrl }: ChildProps) {
-  var [page, setPage] = useState(pageUrl ? pageUrl : 1);
+export default function Home() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   let id: number = 3498;
   // console.log(games);
-
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+  const page = searchParams.get("page") || "1";
+  console.log(`Home Page ${page}`);
   const fetchGames = async () => {
     // fs.writeFile('./page/page.tsx',page.toString())
     const key = "bade7e318e0545a4a034f3b3d23f12bc";
     const res = await fetch(
-      // "https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&ordering=-rating&developers=2623",
-      // `https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&dates=2019-01-01,2019-12-31&developers=18`,
-      /* for date and order=added */ //`https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&page=${page}&dates=1996-10-10,2001-10-10&ordering=-added`,
-      /* for date and platforms */ // `https://api.rawg.io/api/games?key=bade7e318e0545a4a034f3b3d23f12bc&page=${page}&dates=2023-09-01,2024-09-30&platforms=18,1,7`,
-      /*to search for perticular game*/ // `https://api.rawg.io/api/games?search=play station &key=${key}`,
-      /*PLatfrom api*/ // `https://api.rawg.io/api/platforms/playstation4/games?key=${key}`,
       /* normal */ `https://api.rawg.io/api/games?key=${key}&id=${id}&page=${page}&platforms=4`,
       { next: { revalidate: 10 } }
     );
@@ -81,28 +79,17 @@ export default function Home({ pageUrl }: ChildProps) {
 
   useEffect(() => {
     fetchGames();
-  }, [pageUrl, page]);
+  }, [page]);
 
-  const getPage = (page: number) => {
-    // setPage(page);
-  };
-  const router = useRouter();
-  const url = usePathname();
+  console.log(games);
 
   return (
     <main className="  bg-[black] ">
       <Container>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth  justify-center md:p-5">
-          {games && !loading ? (
+          {!loading ? (
             games.map((game: Games) => {
-              return (
-                <SingleCard
-                  getPage={getPage}
-                  page={page}
-                  game={game}
-                  key={game.id}
-                />
-              );
+              return <SingleCard game={game} key={game.id} />;
             })
           ) : (
             <YouTube />
@@ -114,9 +101,11 @@ export default function Home({ pageUrl }: ChildProps) {
             <ThemeProvider theme={theme}>
               <PaginationRounded
                 count={count}
-                page={page}
-                setPage={setPage}
-                pageUrl={pageUrl}
+                page={parseInt(page, 10)}
+                onPageChange={(page) => {
+                  router.push(pathName + "?page=" + page);
+                }}
+                // pageUrl={pageUrl}
               />
             </ThemeProvider>
           </div>
