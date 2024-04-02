@@ -36,17 +36,14 @@ ChildProps) {
     <Stack spacing={2} className=" p-5 text-white w-[fit]">
       <Pagination
         sx={{
-          ".*-MuiButtonBase-root-MuiPaginationItem-root": {
+          ".MuiPaginationItem-root": {
             color: "white",
             border: "0.1px solid #6f6e6e",
+            fontWeight: "600",
           },
-          ".*-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
+          ".Mui-selected": {
             backgroundColor: "#4d4747",
             border: "1px solid #ffff",
-          },
-          ".*-MuiPaginationItem-root": {
-            color: "white",
-            fontWeight: "600",
           },
         }}
         className="text-white"

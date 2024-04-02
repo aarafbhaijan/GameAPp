@@ -20,17 +20,6 @@ const MyCarousel = ({ images }: ChildProps) => {
   //     // onDragStart={handleDragStart}
   //   />;
   // });
-  const responsive = {
-    200: {
-      items: 10,
-    },
-    512: {
-      items: 12,
-    },
-    1024: {
-      items: 14,
-    },
-  };
 
   return (
     <>

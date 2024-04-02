@@ -23,7 +23,7 @@ const Logo = () => {
   return (
     <Container>
       <div className="navbar sticky bg-transparent opacity-1 p-5 text-white z-50 shadow-xl border-b-[.1px] border-[#4c4a4a] ">
-        <div className="flex-1 gap-0">
+        <div className="flex-1 p-[-1]">
           <Image
             src={image}
             width={80}
@@ -31,13 +31,19 @@ const Logo = () => {
             className="w-14"
             alt="logo"
           />
-          <Link href={"/"} className="btn btn-ghost text-xl md:text-3xl">
+          <Link
+            href={"/"}
+            className="btn btn-ghost text-2xl md:text-3xl uppercase"
+          >
             PixelPlayToon
           </Link>
         </div>
 
         <div className="md:flex-none text-xl justify-center  ">
           <ul className="text-lg menu menu-horizontal px-1 hidden md:flex ">
+            <li>
+              <Link href={"/"}>Home</Link>
+            </li>
             <li>
               <Link href={"/Search"}>Search</Link>
             </li>
@@ -86,7 +92,7 @@ const Logo = () => {
                   </label>
                 </div>
               </div>
-              <div className="drawer-side">
+              <div className="drawer-side ">
                 <label
                   htmlFor="my-drawer-4"
                   aria-label="close sidebar"
@@ -95,14 +101,17 @@ const Logo = () => {
                 <ul className="menu p-4 w-80 min-h-full bg-black glass text-white ">
                   {/* Sidebar content here */}
                   <li>
-                    <Link href={"./Search"}>Search</Link>
+                    <Link href={"/"}>Home</Link>
+                  </li>
+                  <li>
+                    <Link href={"/Search"}>Search</Link>
                   </li>
                   <li>
                     <details>
                       <summary>Platforms</summary>
                       <ul className="p-2 m-3 border-2 shadow-sm  border-[#202020] text-[white] bg-black rounded-t-none">
                         {platforms.map((platform) => (
-                          <li className="w-fit p-2 h-10 overflow-hidden scroll-smooth ">
+                          <li className="w-[fit] p-2 h-10 overflow-hidden bg-inherit scroll-smooth ">
                             <button>{platform}</button>
                           </li>
                         ))}

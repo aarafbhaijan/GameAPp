@@ -65,7 +65,7 @@ export default function Home() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   let id: number = 3498;
-  // console.log(games);
+  console.log(games);
   console.log(search);
   const fetchGames = async () => {
     console.log(
@@ -88,11 +88,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchGames();
-  }, [ page, search]);
+  }, [page, search]);
 
-  const getPage = (page: number) => {
-    // setPage(page);
-  };
   const router = useRouter();
   const url = usePathname();
 
@@ -106,17 +103,12 @@ export default function Home() {
             fetchGames={fetchGames}
           />
 
-          {/* <GloballyCustomizedOptions /> */}
+         
         </div>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth  justify-center md:p-5">
           {games && !loading ? (
             games.map((game: Games) => {
-              return (
-                <SingleCard
-                  game={game}
-                  key={game.id}
-                />
-              );
+              return <SingleCard game={game} key={game.id} />;
             })
           ) : (
             <YouTube />

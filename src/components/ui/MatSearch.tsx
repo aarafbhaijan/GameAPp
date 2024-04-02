@@ -5,7 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 interface ChildProps {
   search: string;
   setSearch: (search: string) => void;
-  fetchGames: (search:string) => void;
+  fetchGames: (search: string) => void;
 }
 
 export default function FreeSolo({
@@ -13,6 +13,7 @@ export default function FreeSolo({
   setSearch,
   fetchGames,
 }: ChildProps) {
+  
   return (
     <Stack
       spacing={2}
@@ -25,21 +26,16 @@ export default function FreeSolo({
           fetchGames(search);
         }}
       >
-        {/* <Autocomplete
-        id="free-solo-demo"
-        sx={{ border: "0.4px solid grey ", color: "white" }}
-        freeSolo
-        options={games.map((option) => option.name)}
-        renderInput={(params) => <TextField {...params} label="freeSolo" />}
-      /> */}
-
         <Autocomplete
+          onClose={() => {}}
+          autoComplete
           freeSolo
+          onChange={(e, newVal: string) => setSearch(newVal)}
           sx={{
-            ".css-md26zr-MuiInputBase-root-MuiOutlinedInput-root": {
+            ".MuiOutlinedInput-root": {
               color: "white",
             },
-            ".css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
+            ".MuiInputLabel-root": {
               color: "white",
             },
           }}
@@ -50,6 +46,7 @@ export default function FreeSolo({
           })}
           renderInput={(params) => (
             <TextField
+              // autoComplete='true'
               sx={{ text: "white" }}
               {...params}
               label="Search input"
@@ -58,7 +55,6 @@ export default function FreeSolo({
                 type: "search",
               }}
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
             />
           )}
         />

@@ -1,6 +1,6 @@
-import * as React from "react"
- 
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,20 +8,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
- 
+} from "@/components/ui/select";
+
 export function CardWithForm() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[350px] p-2">
       <CardHeader>
         <CardTitle>Create project</CardTitle>
         <CardDescription>Deploy your new project in one-click.</CardDescription>
@@ -55,5 +55,5 @@ export function CardWithForm() {
         <Button>Deploy</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

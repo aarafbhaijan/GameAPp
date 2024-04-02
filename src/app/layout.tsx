@@ -7,6 +7,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "../lib/utils";
 import Head from "next/head";
 import { Container } from "@mui/material";
+import Footer from "@/components/Footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 const fontSans = FontSans({
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <Logo />
         {children}
+        <Footer />
       </body>
     </html>
   );

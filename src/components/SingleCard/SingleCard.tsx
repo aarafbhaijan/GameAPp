@@ -83,7 +83,7 @@ const SingleCard = ({ game }: ChildProps) => {
       {game ? (
         <Link key={game.id} href={`/pages/${game.id}`}>
           <div
-            className="card z-0 md:w-[16rem] w-40 glass text-[#f1eeee] cursor-pointer  hover:bg-[#232222] md:hover:scale-105 transition-[180ms]"
+            className="card z-0 md:w-[16rem] w-41 glass text-[#f1eeee] cursor-pointer  hover:bg-[#232222] md:hover:scale-105 transition-[180ms]"
             key={game.ratings.id}
           >
             <figure>
@@ -114,10 +114,10 @@ const SingleCard = ({ game }: ChildProps) => {
                           message = <SiPlaystation3 />;
                           break;
                         case "Nintendo Switch":
-                          message = <SiMacos />;
+                          message = < BsNintendoSwitch/>;
                           break;
                         case "macOS":
-                          message = <BsNintendoSwitch />;
+                          message = <SiMacos />;
                           break;
                       }
                       return (

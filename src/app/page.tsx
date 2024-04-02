@@ -96,7 +96,7 @@ function Home() {
   return (
     <main className="  bg-[black] ">
       <Container>
-        <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth  justify-center md:p-5">
+        <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth max-w-screen  justify-center md:p-5">
           {!loading ? (
             games.map((game: Games) => {
               return <SingleCard game={game} key={game.id} />;

@@ -113,11 +113,21 @@ const GamePage = (props: any) => {
       };
     }
   }, [details]);
-  if (loading) return "loading";
-  if (!details) return "no Data Found";
+  if (loading)
+    return (
+      <div className="flex text-white min-w-screen max-w-screen min-h-screen max-h-screen justify-center items-center">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+  if (!details)
+    return (
+      <div className="flex w-screen h-screen justify-center items-center">
+        <span className="text-xl">No Data Found!</span>
+      </div>
+    );
   return (
     <div
-      className={`min-h-[130vh] bg-${details.dominant_color} min-w-screen min-w-screen relative  bg-cover bg-center max-h-fit `}
+      className={`min-h-[130vh] max-h-fit bg-${details.dominant_color} min-w-screen min-w-screen relative  bg-cover bg-center max-h-fit mb-15`}
       style={{
         backgroundImage: `url(${details.background_image})`,
       }}
@@ -126,10 +136,10 @@ const GamePage = (props: any) => {
       <div className="absolute inset-0 bg-black opacity-75  items-center justify-center"></div>
       <div className="bg-[inherit] opacity-75 ">
         {/* Nested content here */}
-        <Container>
+        <Container className="">
           <div className="py-4 "></div>
           <div className="flex xl:justify-between  max-w-screen min-w-screen gap-10 xl:flex-row flex-col">
-            <div className=" xl:w-[40vw] lg:w-[70vw] w-[90vw] min-w-[] xl:justify-normal justify-self-center  text-lg ">
+            <div className=" min-h-fit xl:w-[40vw] lg:w-[70vw] w-[90vw]  xl:justify-normal justify-self-center  text-lg ">
               {!loadingScreenShots ? (
                 <MyCarousel images={screenShots} />
               ) : (

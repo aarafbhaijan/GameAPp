@@ -14,6 +14,12 @@ import { FaPlaystation } from "react-icons/fa6";
 import { TbBrandXbox } from "react-icons/tb";
 import { FaApple } from "react-icons/fa";
 import { PiAppleLogoDuotone } from "react-icons/pi";
+import { SiPlaystationvita } from "react-icons/si";
+import { GiSpiderWeb } from "react-icons/gi";
+
+import { SiWiiu } from "react-icons/si";
+import ControlledAccordions from "../ui/SystemTable";
+import { SiNintendo3Ds } from "react-icons/si";
 interface Requirements {
   minimum: string;
   recommended: string;
@@ -30,13 +36,11 @@ interface ChildProps {
   plats: PlatsInfo[] | undefined;
 }
 const SystemRequire = ({ plats }: ChildProps) => {
-  // console.log(plats[0].requirements_en.minimum);
-
   return (
-    <div className="text-[grey] flex flex-col gap-10 items-center  w-full h-[100vh]">
-      <div className="flex gap-5 w-full flex-wrap justify-center ">
-        <label className="md:text-xl text-lg uppercase self-center p-2  text-center text-white font-bold block w-full glass">
-          Systems
+    <div className="text-[grey] flex flex-col gap-10 items-center  w-full min-h-[100vh] max-h-fit">
+      <div className="flex gap-5 w-fit flex-wrap justify-center ">
+        <label className="md:text-xl text-lg uppercase self-center   text-center text-white font-bold block w-full glass">
+          Platforms
         </label>
         {plats?.map((plat) => {
           let message;
@@ -60,10 +64,10 @@ const SystemRequire = ({ plats }: ChildProps) => {
               message = <SiPlaystation3 />;
               break;
             case "Nintendo Switch":
-              message = <SiMacos />;
+              message = <BsNintendoSwitch />;
               break;
             case "macOS":
-              message = <BsNintendoSwitch />;
+              message = <SiMacos />;
               break;
             case "Linux":
               message = <FaLinux />;
@@ -86,6 +90,18 @@ const SystemRequire = ({ plats }: ChildProps) => {
             case "Xbox":
               message = <TbBrandXbox />;
               break;
+            case "PS Vita":
+              message = <SiPlaystationvita />;
+              break;
+            case "Web":
+              message = <GiSpiderWeb />;
+              break;
+            case "Wii U":
+              message = <SiWiiu />;
+              break;
+            case "Nintendo 3DS":
+              message = <SiNintendo3Ds />;
+              break;
           }
           return (
             <h1 className="md:text-5xl text-5xl glass text-white p-3 justify-self-start  ">
@@ -94,43 +110,16 @@ const SystemRequire = ({ plats }: ChildProps) => {
           );
         })}
       </div>
-      <div className="w-full">
+      <div className="w-full ">
         {plats && (
           <h1 className="glass text-2xl text-white p-3 uppercase text-center font-bold mb-4 jus">
             System Requirements
           </h1>
         )}
-        <div className="flex w-full gap-3 justify-center h-fit">
-          {plats &&
-            plats?.map((plat) => {
-              return (
-                <div>
-                  {/* <h1>{plat.requirements_en.minimum!=null?plat.requirements_en.minimum:''}</h1> */}
-                  {plat.requirements?.minimum && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: plat.requirements.minimum,
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
-
-          {plats &&
-            plats?.map((plat) => {
-              return (
-                <div>
-                  {plat.requirements?.recommended && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: plat.requirements.recommended,
-                      }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+        <div className="w-full min-h-[100vh] max-h-fit">
+          {plats?.map((plat) => (
+            <ControlledAccordions plat={plat} />
+          ))}
         </div>
       </div>
     </div>
