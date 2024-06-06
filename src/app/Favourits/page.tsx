@@ -2,12 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
-import SingleCard from "./../components/SingleCard/SingleCard";
+import SingleCard from "../../components/SingleCard/SingleCard";
 import PaginationRounded from "@/components/ui/PaginationMat";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { red, purple, green } from "@mui/material/colors";
 
-import RootLayout from "./layout";
+import RootLayout from "../layout";
 import { Container } from "@mui/material";
 import fs from "node:fs/promises";
 import { usePathname, useRouter } from "next/navigation";
@@ -57,24 +57,23 @@ const theme = createTheme({
 const HomeContainer = () => {
   return (
     <Suspense fallback={null}>
-      <Home />
+      <Favourits />
     </Suspense>
   );
 };
 export default HomeContainer;
 
-function Home() {
+function Favourits() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  let id: number = 3498;
+  let id: number = 0;
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
-  const page = searchParams.get("page") || "1";  
+  const page = searchParams.get("page") || "1";
   console.log(`Home Page ${page}`);
   const fetchGames = async () => {
-
     const key = "bade7e318e0545a4a034f3b3d23f12bc";
     const res = await fetch(
       /* normal */ `https://api.rawg.io/api/games?key=${key}&id=${id}&page=${page}&platforms=4`,
@@ -89,13 +88,14 @@ function Home() {
 
   useEffect(() => {
     fetchGames();
+    console.log("searchParams", searchParams.getAll("name"));
   }, [page]);
 
   console.log(games);
 
   return (
     <main className="  bg-[black] ">
-      <Particle/>
+      <Particle />
       <Container>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth max-w-screen  justify-center md:p-5">
           {!loading ? (
@@ -112,7 +112,7 @@ function Home() {
             <ThemeProvider theme={theme}>
               <PaginationRounded
                 count={count}
-                page={parseInt(page, 10)}
+                page={parseInt(page)}
                 onPageChange={(page) => {
                   router.push(pathName + "?page=" + page);
                 }}

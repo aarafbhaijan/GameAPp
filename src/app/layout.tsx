@@ -8,6 +8,7 @@ import { cn } from "../lib/utils";
 import Head from "next/head";
 import { Container } from "@mui/material";
 import Footer from "@/components/Footer/Footer";
+import StoreProvider from "./StoreProvider/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 const fontSans = FontSans({
@@ -28,9 +29,11 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Logo />
-        {children}
-        <Footer />
+        <StoreProvider>
+          <Logo />
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

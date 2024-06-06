@@ -108,17 +108,18 @@ export default function ControlledAccordions({ plat }: ChildProps) {
     };
 
   return (
-    <div className="z-5 w-full">
+    <div className="z-5 w-full ">
       <Accordion
-        className="glass bg-inherit text-white font-bold flex flex-col "
+        className="glass card bg-inherit gap-2 text-white font-bold flex flex-col "
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
       >
         <AccordionSummary
-          className="text-white"
+          className="text-white flex  gap-2 mx-3"
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          
         >
           <Typography className="text-5xl" sx={{ width: "23%" }}>
             {logo}
@@ -129,7 +130,7 @@ export default function ControlledAccordions({ plat }: ChildProps) {
           </Typography>
           {/* <Typography sx={{ color: "text.secondary" }}> </Typography> */}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className="">
           <Typography>
             <div className="text-black">
               <label htmlFor="" className="text-[white]  font-bold">

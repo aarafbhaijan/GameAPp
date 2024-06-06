@@ -37,9 +37,9 @@ interface ChildProps {
 }
 const SystemRequire = ({ plats }: ChildProps) => {
   return (
-    <div className="text-[grey] flex flex-col gap-10 items-center  w-full min-h-[100vh] max-h-fit">
+    <div className="text-[grey]  flex flex-col gap-10 items-center  w-full min-h-[100vh] max-h-fit">
       <div className="flex gap-5 w-fit flex-wrap justify-center ">
-        <label className="md:text-xl text-lg uppercase self-center   text-center text-white font-bold block w-full glass">
+        <label className="md:text-xl card text-lg uppercase self-center   text-center text-white font-bold block w-full glass">
           Platforms
         </label>
         {plats?.map((plat) => {
@@ -104,7 +104,7 @@ const SystemRequire = ({ plats }: ChildProps) => {
               break;
           }
           return (
-            <h1 className="md:text-5xl text-5xl glass text-white p-3 justify-self-start  ">
+            <h1 className="md:text-5xl card text-5xl glass text-white p-3 justify-self-start  ">
               {message ? message : null}
             </h1>
           );
@@ -112,7 +112,7 @@ const SystemRequire = ({ plats }: ChildProps) => {
       </div>
       <div className="w-full ">
         {plats && (
-          <h1 className="glass text-2xl text-white p-3 uppercase text-center font-bold mb-4 jus">
+          <h1 className="glass card text-2xl text-white p-3 uppercase text-center font-bold mb-4 jus">
             System Requirements
           </h1>
         )}

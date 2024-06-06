@@ -2,18 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
-import SingleCard from "./../components/SingleCard/SingleCard";
+import SingleCard from "../../../components/SingleCard/SingleCard";
 import PaginationRounded from "@/components/ui/PaginationMat";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { red, purple, green } from "@mui/material/colors";
 
-import RootLayout from "./layout";
+import RootLayout from "../../layout";
 import { Container } from "@mui/material";
 import fs from "node:fs/promises";
 import { usePathname, useRouter } from "next/navigation";
 import YouTube from "@/components/ui/Pulseate";
 import { useSearchParams } from "next/navigation";
-import Particle from "@/components/Particles/Patricles";
 
 export interface Platfroms {
   platform: {
@@ -68,13 +67,14 @@ function Home() {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   let id: number = 3498;
+  // console.log(games);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathName = usePathname();
-  const page = searchParams.get("page") || "1";  
+  const page = searchParams.get("page") || "1";
   console.log(`Home Page ${page}`);
   const fetchGames = async () => {
-
+    // fs.writeFile('./page/page.tsx',page.toString())
     const key = "bade7e318e0545a4a034f3b3d23f12bc";
     const res = await fetch(
       /* normal */ `https://api.rawg.io/api/games?key=${key}&id=${id}&page=${page}&platforms=4`,
@@ -95,7 +95,6 @@ function Home() {
 
   return (
     <main className="  bg-[black] ">
-      <Particle/>
       <Container>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth max-w-screen  justify-center md:p-5">
           {!loading ? (
@@ -116,6 +115,7 @@ function Home() {
                 onPageChange={(page) => {
                   router.push(pathName + "?page=" + page);
                 }}
+                // pageUrl={pageUrl}
               />
             </ThemeProvider>
           </div>

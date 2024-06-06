@@ -24,7 +24,7 @@ const MyCarousel = ({ images }: ChildProps) => {
   return (
     <>
       {images ? (
-        <div className="opacity-1 hover:scale-105 transition-all  cursor-pointer">
+        <div className="opacity-1 hover:scale-105 transition-all 2xl:w-[42vw] cursor-pointer">
           <AliceCarousel
             autoPlayInterval={2000}
             autoPlay

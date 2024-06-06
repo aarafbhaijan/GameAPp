@@ -9,17 +9,9 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import Typed from "typed.js";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import RootLayout from "@/app/layout";
 import SystemRequire from "@/components/SystemRequire/SystemRequire";
+import Particle from "@/components/Particles/Patricles";
 interface Details {
   background_image: string;
   id: number;
@@ -132,9 +124,11 @@ const GamePage = (props: any) => {
         backgroundImage: `url(${details.background_image})`,
       }}
     >
+       
       <div className="absolute inset-0 bg-[#181717] opacity-50"></div>
       <div className="absolute inset-0 bg-black opacity-75  items-center justify-center"></div>
       <div className="bg-[inherit] opacity-75 ">
+      <Particle/>
         {/* Nested content here */}
         <Container className="">
           <div className="py-4 "></div>

@@ -1,28 +1,30 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import image from "../../../public/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@mui/material";
-
+import "./logo.css";
+import { FaHeart, FaList } from "react-icons/fa6";
+import { FaHome, FaSearch } from "react-icons/fa";
+import FavModal from "./FavModal";
 const Logo = () => {
-  const platforms = [
-    "PC",
-    "PlayStation3",
-    "PlayStation4",
-    "PlayStation5",
-    "Xbox",
-    "Xbox One",
-    "Xbox Series S/X",
-    "iOS",
-    "Android",
-    "Apple Macintosh",
-    "Linux",
-    "Nintendo",
-    "Web",
-  ];
+  const [plats, setPlats] = useState<any>([]);
+  console.log("platforms", plats);
+
+  useEffect(() => {
+    const getPlats = async () => {
+      const data = await fetch(
+        "https://api.rawg.io/api/platforms?key=bade7e318e0545a4a034f3b3d23f12bc"
+      );
+      const { results } = await data.json();
+      setPlats(results);
+    };
+    getPlats();
+  }, []);
   return (
     <Container>
-      <div className="navbar sticky bg-transparent opacity-1 p-5 text-white z-50 shadow-xl border-b-[.1px] border-[#4c4a4a] ">
+      <div className="navbar  sticky bg-transparent opacity-1 p-5 text-white z-50 shadow-xl border-b-[.1px] border-[#4c4a4a] ">
         <div className="flex-1 p-[-1]">
           <Image
             src={image}
@@ -39,21 +41,33 @@ const Logo = () => {
           </Link>
         </div>
 
-        <div className="md:flex-none text-xl justify-center  ">
+        <div className="md:flex-none text-xl justify-center   ">
           <ul className="text-lg menu menu-horizontal px-1 hidden md:flex ">
             <li>
-              <Link href={"/"}>Home</Link>
+              <Link href={"/"}>
+                <FaHome />
+                Home
+              </Link>
             </li>
             <li>
-              <Link href={"/Search"}>Search</Link>
+              <FavModal />
+            </li>
+            <li>
+              <Link href={"/Search"}>
+                <FaSearch />
+                Search
+              </Link>
             </li>
             <li>
               <details>
-                <summary>Platforms</summary>
-                <ul className="p-2 m-3 border-2 shadow-sm  border-[#202020] text-[white] bg-transparent rounded-t-none glass">
-                  {platforms.map((platform) => (
+                <summary>
+                  <FaList />
+                  Platforms
+                </summary>
+                <ul className="p-2 m-3 border-2 shadow-sm  border-[#202020] text-[white] bg-transparent rounded-t-none glass h-[50vh] overflow-scroll no-bar">
+                  {plats.map((plat: any) => (
                     <li className="w-fit p-2 h-10 overflow-hidden scroll-smooth ">
-                      <button>{platform}</button>
+                      <button>{plat.name}</button>
                     </li>
                   ))}
                 </ul>
@@ -109,10 +123,13 @@ const Logo = () => {
                   <li>
                     <details>
                       <summary>Platforms</summary>
-                      <ul className="p-2 m-3 border-2 shadow-sm  border-[#202020] text-[white] bg-black rounded-t-none">
-                        {platforms.map((platform) => (
-                          <li className="w-[fit] p-2 h-10 overflow-hidden bg-inherit scroll-smooth ">
-                            <button>{platform}</button>
+                      <ul className="p-2 m-3 border-2 shadow-sm  border-[#202020] text-[white] bg-black rounded-t-none h-[50vh] overflow-scroll no-bar">
+                        {plats.map((plat: any) => (
+                          <li
+                            key={plat.id}
+                            className="w-[fit] p-2 h-10 overflow-hidden bg-inherit scroll-smooth "
+                          >
+                            <button>{plat.name}</button>
                           </li>
                         ))}
                       </ul>

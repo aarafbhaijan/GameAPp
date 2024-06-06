@@ -25,7 +25,7 @@ ChildProps) {
   // const router = useRouter();
   // const path = usePathname();
 
-  console.log(`pagination ${page}`);
+  
 
   // const getCurrPage = (page: number) => {
   //   if (path == "/") router.push(`/${page}`);
@@ -33,7 +33,7 @@ ChildProps) {
   // };
 
   return (
-    <Stack spacing={2} className=" p-5 text-white w-[fit]">
+    <Stack spacing={2} className="p-5 text-white w-[fit]">
       <Pagination
         sx={{
           ".MuiPaginationItem-root": {
@@ -47,11 +47,10 @@ ChildProps) {
           },
         }}
         className="text-white"
-        count={500}
+        count={10000}
         page={page}
         onChange={(e, page) => {
           onPageChange(page);
-
           // window.scroll(0, 0);
         }}
         variant="outlined"

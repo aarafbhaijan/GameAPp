@@ -19,6 +19,7 @@ import { usePathname, useRouter } from "next/navigation";
 import YouTube from "@/components/ui/Pulseate";
 import FreeSolo from "@/components/ui/MatSearch";
 import GloballyCustomizedOptions from "@/components/ui/MatSearch2";
+import Particle from "@/components/Particles/Patricles";
 
 export interface Platfroms {
   platform: {
@@ -67,6 +68,7 @@ export default function Home() {
   let id: number = 3498;
   console.log(games);
   console.log(search);
+  
   const fetchGames = async () => {
     console.log(
       `https://api.rawg.io/api/games?search=${search} &key=bade7e318e0545a4a034f3b3d23f12bc`
@@ -95,6 +97,7 @@ export default function Home() {
 
   return (
     <main className="  bg-[black] ">
+      <Particle/>
       <Container>
         <div className="text-white w-full inline-block m-5">
           <FreeSolo
@@ -102,8 +105,6 @@ export default function Home() {
             setSearch={setSearch}
             fetchGames={fetchGames}
           />
-
-         
         </div>
         <div className="flex flex-wrap gap-[1rem] p-2 md:gap-5 scroll-smooth  justify-center md:p-5">
           {games && !loading ? (
